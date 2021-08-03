@@ -1,57 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { Navbar } from "./app/Navbar";
+import { AllPhotosContainer } from "./features/photos/AllPhotosContainer";
+import { FavoritePhotosContainer } from "./features/photos/FavoritePhotosContainer";
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route exact path="/home" component={AllPhotosContainer} />
+          <Route exact path="/favorites" component={FavoritePhotosContainer} />
+          <Route
+            exact
+            path="/home/:id"
+            render={({ match }) => <div>Modal</div>}
+          />
+          <Route
+            exact
+            path="/favorites/:id"
+            render={({ match }) => <div>Modal</div>}
+          />
+          <Redirect to="/home" />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
