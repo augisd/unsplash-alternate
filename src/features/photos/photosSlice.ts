@@ -5,7 +5,7 @@ import { RootState, AppThunk } from '../../app/store';
 const API_BASE = 'https://api.unsplash.com'
 const API_KEY = 'gNbNocl6vqw3jVkpGJKQrqiDBQVFPGmYjUOM-qp6IgY'
 
-export interface Photo {
+export interface PhotoType {
     id: string;
     created_at: string;
     width: number;
@@ -25,7 +25,7 @@ export interface PhotoUrls {
 
 export interface PhotosState {
     status: 'idle' | 'loading' | 'failed';
-    photos: Photo[];
+    photos: PhotoType[];
 }
 
 const initialState: PhotosState = {

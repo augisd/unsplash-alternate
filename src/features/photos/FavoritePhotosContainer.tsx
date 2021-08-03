@@ -7,7 +7,6 @@ import { like } from "./photosSlice";
 export const FavoritePhotosContainer: React.FC<RouteComponentProps> = (
   props
 ) => {
-  const { match } = props;
   const dispatch = useAppDispatch();
   const photos = useAppSelector((state) =>
     state.photos.photos.filter((photo) => photo.liked_by_user)
@@ -17,11 +16,5 @@ export const FavoritePhotosContainer: React.FC<RouteComponentProps> = (
     dispatch(like(id));
   };
 
-  return (
-    <Photos
-      data={photos}
-      path={match.path}
-      onPhotoLikeChange={handlePhotoLikeChange}
-    />
-  );
+  return <Photos data={photos} onPhotoLikeChange={handlePhotoLikeChange} />;
 };

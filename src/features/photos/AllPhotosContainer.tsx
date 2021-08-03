@@ -5,7 +5,6 @@ import { Photos } from "./Photos";
 import { like } from "./photosSlice";
 
 export const AllPhotosContainer: React.FC<RouteComponentProps> = (props) => {
-  const { match } = props;
   const dispatch = useAppDispatch();
   const photos = useAppSelector((state) => state.photos.photos);
 
@@ -13,11 +12,5 @@ export const AllPhotosContainer: React.FC<RouteComponentProps> = (props) => {
     dispatch(like(id));
   };
 
-  return (
-    <Photos
-      data={photos}
-      path={match.path}
-      onPhotoLikeChange={handlePhotoLikeChange}
-    />
-  );
+  return <Photos data={photos} onPhotoLikeChange={handlePhotoLikeChange} />;
 };

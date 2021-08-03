@@ -9,6 +9,8 @@ import {
 import { Navbar } from "./app/Navbar";
 import { AllPhotosContainer } from "./features/photos/AllPhotosContainer";
 import { FavoritePhotosContainer } from "./features/photos/FavoritePhotosContainer";
+import { Modal } from "./app/Modal/Modal";
+import { ModalContainer } from "./app/Modal/ModalContainer";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -20,18 +22,9 @@ function App() {
         <Switch>
           <Route exact path="/home" component={AllPhotosContainer} />
           <Route exact path="/favorites" component={FavoritePhotosContainer} />
-          <Route
-            exact
-            path="/home/:id"
-            render={({ match }) => <div>Modal</div>}
-          />
-          <Route
-            exact
-            path="/favorites/:id"
-            render={({ match }) => <div>Modal</div>}
-          />
           <Redirect to="/home" />
         </Switch>
+        <ModalContainer />
       </div>
     </Router>
   );
