@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import photosReducer from '../features/photos/photosSlice';
+import photoDetailsReducer from '../features/photos/photoDetailsSlice';
 
 export const store = configureStore({
   reducer: {
-    photos: photosReducer
+    photos: photosReducer,
+    details: photoDetailsReducer
   },
 });
 

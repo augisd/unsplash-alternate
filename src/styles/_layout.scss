@@ -1,0 +1,15 @@
+body {
+    background: $body-background-color;
+    margin: 0;
+}
+
+nav {
+    background: $navbar-background-color;
+}
+
+.App {
+    display: grid;
+    grid-template-columns: 90px auto;
+    gap: 48px;
+}
+

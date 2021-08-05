@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactComponent as CloseIcon } from "../icons/modal_close_icon.svg";
 
 export interface ModalProps {
   onCloseClick: () => void;
@@ -11,17 +12,15 @@ export const Modal: React.FC<ModalProps> = ({ children, onCloseClick }) => {
   };
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        background: "rgba(255,255,255,0.5)",
-      }}
-    >
-      <aside>
-        <button onClick={handleCloseClick}>Close</button>
-        {children}
-      </aside>
-    </div>
+    <aside className="Modal">
+      <div className="Modal__overlay">
+        <div className="Modal__body">
+          <button className="Modal__close-button" onClick={handleCloseClick}>
+            <CloseIcon />
+          </button>
+          {children}
+        </div>
+      </div>
+    </aside>
   );
 };

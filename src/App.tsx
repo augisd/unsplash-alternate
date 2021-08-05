@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./App.css";
+import React from "react";
+import "./styles/_main.scss";
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,12 +9,10 @@ import {
 import { Navbar } from "./app/Navbar";
 import { AllPhotosContainer } from "./features/photos/AllPhotosContainer";
 import { FavoritePhotosContainer } from "./features/photos/FavoritePhotosContainer";
-import { Modal } from "./app/Modal/Modal";
 import { ModalContainer } from "./app/Modal/ModalContainer";
+import { PhotoContainer } from "./features/photos/PhotoContainer";
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
   return (
     <Router>
       <div className="App">
@@ -24,7 +22,9 @@ function App() {
           <Route exact path="/favorites" component={FavoritePhotosContainer} />
           <Redirect to="/home" />
         </Switch>
-        <ModalContainer />
+        <ModalContainer>
+          <PhotoContainer />
+        </ModalContainer>
       </div>
     </Router>
   );

@@ -1,33 +1,37 @@
-import React, { ChangeEvent, MouseEvent, useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { fetchPhotos, like, PhotoType } from "./photosSlice";
-import { Link, RouteComponentProps } from "react-router-dom";
+import React from "react";
+import { PhotoType } from "./photosSlice";
+import { Link } from "react-router-dom";
+import { ReactComponent as LikedIndicator } from "../../app/icons/like_button_icon.svg";
 
 export interface PhotosProps {
   data: PhotoType[];
-  onPhotoLikeChange: (id: string) => void;
 }
 
-export const Photos = ({ data, onPhotoLikeChange }: PhotosProps) => {
+export const Photos = ({ data }: PhotosProps) => {
   const renderedPhotos = data.map((photo) => (
-    <figure key={photo.id}>
-      <Link to={(location) => `${location.pathname}?id=${photo.id}`}>
-        <img src={photo.urls.thumb} alt={photo.alt_description} />
+    <figure key={photo.id} className="Photos__item">
+      <Link
+        className="Photos__link"
+        to={(location) => `${location.pathname}?id=${photo.id}`}
+      >
+        <img
+          className="Photos__image"
+          src={photo.urls.small}
+          alt={photo.alt_description}
+        />
       </Link>
-      <label htmlFor={`like-${photo.id}`}>Like this photo</label>
-      <input
-        type="checkbox"
-        id={`like-${photo.id}`}
-        name={`like-${photo.id}`}
-        checked={photo.liked_by_user}
-        onChange={(e) => onPhotoLikeChange(photo.id)}
-      ></input>
+
+      {photo.liked_by_user && (
+        <div className="Photos__liked-indicator">
+          <LikedIndicator />
+        </div>
+      )}
     </figure>
   ));
 
   return (
-    <section>
-      <h2>All photos</h2>
+    <section className="Photos">
+      <h2 hidden>All photos</h2>
       {renderedPhotos}
     </section>
   );

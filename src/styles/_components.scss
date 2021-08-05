@@ -1,0 +1,246 @@
+// Navbar
+$item-left-coord: 12px;
+$first-item-top-coord: 446px;
+
+.Navbar {
+    height: $navbar-height-desktop;
+    width: $navbar-width-desktop;
+    background: $navbar-background-color;
+
+    &__logo {
+        color: $navbar-logo-color;
+        height: $navbar-logo-height;
+        width: $navbar-logo-width;
+        position: absolute;
+        left: 33px;
+        top: 48px;
+    }
+
+    &__items {
+        position: absolute;
+        left: $item-left-coord;
+        top: $first-item-top-coord;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__item {
+        height: $navbar-item-height;
+        width: $navbar-item-width;
+        border-radius: $navbar-item-border-radius;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--active {
+            background: $navbar-item-color-active;
+            transition: background 0.2s linear;
+        }
+    }
+}
+
+// Photos Gallery
+.Photos {
+    display: grid;
+    margin: 48px 48px 0 0;
+    grid-template-columns: repeat(auto-fill, 231px);
+    grid-auto-rows: 138px;
+    grid-gap: 24px;
+
+    &__link {
+        display: inline-block;
+    }
+
+    &__item {
+        position: relative;
+        margin: 0;
+        width: fit-content;
+        height: fit-content;
+
+        &:nth-child(even) {
+            grid-row: span 2;
+
+            img {
+                height: 276px;
+            }
+        }
+    }
+
+    &__image {
+        border-radius: 10px;
+        object-fit: cover;
+        display: block;
+        width: 231px;
+        height: 138px;
+    }
+
+    &__liked-indicator {
+        background: $blue2;
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+}
+
+// Modal 
+.Modal {
+
+    &__overlay {
+        position: fixed;
+        inset: 0;
+        background: transparentize($gray2, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__body {
+        position: relative;
+        height: 65%;
+        width: 65%;
+        background: transparentize($gray2, 0.8);
+        border-radius: 10px;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        overflow: hidden;
+    }
+
+    &__close-button {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: $gray2;
+        color: $gray6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
+}
+
+// Like Button 
+.LikeButton {
+    height: 32px;
+    border-radius: 10px;
+    background: $gray2;
+    color: $gray6;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 6px;
+    width: fit-content;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    transition: background 0.2s linear;
+
+    &--active {
+        background: $blue2;
+    }
+
+    &__icon {
+        height: 16px;
+        width: 16px;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+// Photo Details
+.Photo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    &__image {
+        width: 50%;
+    }
+
+    &__details {
+        width: 50%;
+        height: 100%;
+        background: $gray1;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .LikeButton {
+            margin-top: 24px;
+        }
+
+        &__title {
+            font-size: 32px;
+            line-height: 37px;
+            color: $white;
+        }
+
+        &__user {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+
+            &__avatar {
+                border-radius: 50%;
+                height: 30px;
+                width: 30px;
+            }
+
+            &__name {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 21px;
+                color: $gray4;
+            }
+        }
+
+        &__camera-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            border-top: 1px solid $gray2;
+            margin-top: auto;
+
+            &__item {
+                padding: 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+
+                &__label {
+                    display: block;
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 14px;
+                    color: $gray3;
+                    margin-bottom: 4px;
+                }
+
+                &__value {
+                    display: block;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: $gray5;
+                }
+            }
+        }
+    }
+}
